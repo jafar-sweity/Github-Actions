@@ -21,4 +21,4 @@ jobs:
 
       - name: docker push
         run: |
-          docker push jafarsw/my-test-image:latest
+          docker push docker.io/jafarsw/my-test-image:latest
