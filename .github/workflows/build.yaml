@@ -12,3 +12,10 @@ jobs:
         with:
           node-version: "18"
       - run: npm ci
+  docker-bild :
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: docker build .
