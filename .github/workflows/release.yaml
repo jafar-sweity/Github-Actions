@@ -20,4 +20,4 @@ jobs:
           docker build . -t  my-test-image:latest
       - name: docker push
         run: |
-          docker push my-test-image:latest
+          docker push jafarsw/my-test-image:latest
