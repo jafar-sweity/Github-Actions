@@ -1,0 +1,20 @@
+on: push
+
+name: Integration
+
+# jobs is a set of jobs that can run in parallel
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: docker build
+        run: |
+          docker build . -t  my-test-image:latest
