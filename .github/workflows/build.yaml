@@ -5,14 +5,20 @@ name: Integration
 # jobs is a set of jobs that can run in parallel
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        os:
+          - ubuntu-22.04
+          - windows-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
       - run: npm ci
-  docker-bild :
+  docker-bild:
     runs-on: ubuntu-22.04
     needs: build
     steps:
