@@ -7,11 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2 # Check out the repository content to GitHub Actions runner machine
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
       - run: |
-          # setup node environment
-          curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-          sudo apt-get install -y nodejs
-          # install dependencies
-          npm install
-          npm run build
+          - run: npm ci
